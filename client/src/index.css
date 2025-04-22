@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 122 39% 34%; /* Green color: #2E7D32 */
+  --primary-dark: 122 40% 25%; /* #1B5E20 */
+  --primary-light: 122 39% 49%; /* #4CAF50 */
+  --primary-foreground: 211 100% 99%;
+  --secondary: 60 4.8% 95.9%;
+  --secondary-foreground: 24 9.8% 10%;
+  --accent: 60 4.8% 95.9%;
+  --accent-foreground: 24 9.8% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 122 39% 34%;
+  --radius: 0.5rem;
+  
+  /* Chart colors */
+  --chart-1: 122 39% 49%;
+  --chart-2: 200 100% 50%;
+  --chart-3: 43 96% 58%;
+  --chart-4: 280 100% 65%;
+  --chart-5: 358 75% 59%;
+  
+  /* Sidebar colors */
+  --sidebar-background: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 122 39% 49%; /* #4CAF50 */
+  --primary-dark: 122 40% 25%; /* #1B5E20 */
+  --primary-light: 122 39% 60%; /* Lighter green for dark mode */
+  --primary-foreground: 211 100% 99%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 122 39% 49%;
+  
+  /* Sidebar colors */
+  --sidebar-background: 240 10% 5.9%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-border: 240 3.7% 15.9%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* TipTap editor specific styles */
+.ProseMirror {
+  @apply min-h-[200px] outline-none;
+}
+
+.ProseMirror p {
+  @apply mb-4 leading-relaxed;
+}
+
+.ProseMirror h1 {
+  @apply text-2xl font-bold mb-4 mt-6;
+}
+
+.ProseMirror h2 {
+  @apply text-xl font-bold mb-3 mt-5;
+}
+
+.ProseMirror h3 {
+  @apply text-lg font-bold mb-2 mt-4;
+}
+
+.ProseMirror ul {
+  @apply list-disc pl-6 mb-4;
+}
+
+.ProseMirror ol {
+  @apply list-decimal pl-6 mb-4;
+}
+
+.ProseMirror blockquote {
+  @apply border-l-4 border-primary pl-4 italic text-gray-600 dark:text-gray-400 mb-4;
+}
+
+.ProseMirror mark {
+  @apply bg-yellow-100 dark:bg-yellow-900 px-1;
+}
+
+.ProseMirror a {
+  @apply text-primary underline;
+}
+
+.ProseMirror img {
+  @apply max-w-full h-auto;
+}
+
+.ProseMirror code {
+  @apply bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm;
+}
+
+.ProseMirror pre {
+  @apply bg-gray-100 dark:bg-gray-800 p-3 rounded mb-4 overflow-x-auto;
+}
+
+.ProseMirror pre code {
+  @apply bg-transparent p-0;
+}
+
+.ProseMirror .task-list {
+  @apply list-none pl-0;
+}
+
+.ProseMirror .task-list-item {
+  @apply flex items-start mb-1;
+}
+
+/* Editor toolbar buttons */
+.editor-toolbar button {
+  @apply p-1.5 rounded hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300;
+}
+
+.editor-toolbar button.active {
+  @apply bg-primary-light bg-opacity-20 text-primary-dark dark:text-primary-light;
+}

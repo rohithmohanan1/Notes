@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - Note Green</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 24px;
+    }
+    
+    .container {
+      max-width: 500px;
+      padding: 40px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      color: #2E7D32;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    
+    p {
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    
+    button {
+      background-color: #2E7D32;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    button:hover {
+      background-color: #1B5E20;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #f1f1f1;
+      }
+      
+      .container {
+        background-color: #1e1e1e;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      
+      h1 {
+        color: #4CAF50;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <rect width="24" height="24" rx="3" fill="#2E7D32" />
+      <path d="M7 21C4.79086 21 3 19.2091 3 17V7C3 4.79086 4.79086 3 7 3H17C19.2091 3 21 4.79086 21 7V17C21 19.2091 19.2091 21 17 21H7Z" stroke="white" stroke-width="1.5" fill="none" />
+      <path d="M7 7H13" stroke="white" stroke-width="1.5" />
+      <path d="M7 12H17" stroke="white" stroke-width="1.5" />
+      <path d="M7 17H15" stroke="white" stroke-width="1.5" />
+    </svg>
+    <h1>You Are Offline</h1>
+    <p>Currently, you don't have an internet connection. Note Green works offline, but you'll need to reconnect to access all features and sync your changes.</p>
+    <p>Your recent notes are available, and any changes you make will be synced when you reconnect.</p>
+    <button onclick="window.location.reload()">Try Again</button>
+  </div>
+  
+  <script>
+    // Check for connection status changes
+    window.addEventListener('online', () => {
+      window.location.reload();
+    });
+  </script>
+</body>
+</html>
