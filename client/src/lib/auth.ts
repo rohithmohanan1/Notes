@@ -1,6 +1,8 @@
 import { 
   GoogleAuthProvider, 
   signInWithPopup, 
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signOut as firebaseSignOut,
   onAuthStateChanged as firebaseAuthStateChanged,
   type User as FirebaseUser
@@ -10,14 +12,41 @@ import { apiRequest } from "./queryClient";
 import { queryClient } from "./queryClient";
 import { InsertUser, User } from "@shared/schema";
 
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
 export async function signInWithGoogle(): Promise<FirebaseUser> {
   try {
-    const result = await signInWithPopup(auth, provider);
+    const result = await signInWithPopup(auth, googleProvider);
     return result.user;
   } catch (error) {
     console.error("Error signing in with Google", error);
+    throw error;
+  }
+}
+
+export async function registerWithEmail(email: string, password: string, username: string): Promise<FirebaseUser> {
+  try {
+    const result = await createUserWithEmailAndPassword(auth, email, password);
+    
+    // Create user in database with username
+    await createUserInDatabase({
+      ...result.user,
+      displayName: username,
+    });
+    
+    return result.user;
+  } catch (error) {
+    console.error("Error registering with email", error);
+    throw error;
+  }
+}
+
+export async function signInWithEmail(email: string, password: string): Promise<FirebaseUser> {
+  try {
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    return result.user;
+  } catch (error) {
+    console.error("Error signing in with email", error);
     throw error;
   }
 }
