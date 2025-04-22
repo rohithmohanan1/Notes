@@ -2,7 +2,13 @@
 
 import * as React from "react"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
-import { type ThemeProviderProps } from "next-themes/dist/types"
+
+type ThemeProviderProps = {
+  children: React.ReactNode;
+  defaultTheme?: string;
+  enableSystem?: boolean;
+  [key: string]: any;
+}
 
 export function createTheme() {
   return {
