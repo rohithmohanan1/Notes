@@ -8,7 +8,7 @@ import { onAuthStateChanged, createUserInDatabase } from "@/lib/auth";
 import { User as FirebaseUser } from "firebase/auth";
 import { User } from "@shared/schema";
 import NotFound from "@/pages/not-found";
-import Login from "@/pages/login";
+import AuthPage from "@/pages/auth-page";
 import Home from "@/pages/home";
 
 function Router() {
@@ -39,10 +39,10 @@ function Router() {
     return () => unsubscribe();
   }, []);
 
-  // Redirect to login if not authenticated
+  // Redirect to auth if not authenticated
   useEffect(() => {
-    if (!loading && !user && location.pathname !== '/login') {
-      setLocation('/login');
+    if (!loading && !user && location.pathname !== '/auth') {
+      setLocation('/auth');
     }
   }, [user, loading, setLocation]);
 
@@ -56,7 +56,7 @@ function Router() {
 
   return (
     <Switch>
-      <Route path="/login" component={() => <Login />} />
+      <Route path="/auth" component={AuthPage} />
       <Route path="/" component={() => <Home user={user} />} />
       <Route component={NotFound} />
     </Switch>
